@@ -1,7 +1,7 @@
 <template>
-
     <div>
 
+        <h4>Filter by Title:</h4>
         <input type="text" class="form-control" v-model="searchQuery" placeholder="Search by title">
 
         <h4>Filter by Genre:</h4>
@@ -19,21 +19,32 @@
         <div v-else>
             <div class="movie-list">
                 <div v-for="movie in filteredMovies" :key="movie.id">
-                    <h4>
-                        <router-link :to="{ name: 'movie', params: { movie: movie.nid[0].value }}">{{ movie.title[0].value }}</router-link>
+                    <h4 v-if="movie.title && movie.title[0] && movie.title[0].value">
+                        <strong>Title:</strong> <router-link
+                            :to="{ name: 'movie', params: { movie: movie.nid[0].value } }">{{ movie.title[0].value
+                            }}</router-link>
                     </h4>
-                    <p>
+                    <p v-if="movie.body && movie.body[0] && movie.body[0].value">
+                        <strong>Body:</strong> <span v-html="movie.body[0].value"></span>
+                    </p>
+                    <p v-if="movie.field_director && movie.field_director[0] && movie.field_director[0].value">
                         <strong>Directors:</strong> {{ movie.field_director[0].value }}
                     </p>
-                    <strong>Actors:</strong><br>
-                    <span v-for="actor in movie.field_actors" :key="actor.id">{{ actor.value }}<br></span>
-                    <strong>Genre:</strong>
-                    <span v-for="genre in movie.field_genres" :key="genre.id">{{ genre.value }},</span>
-                    <hr>
-                    <img :src="movie.field_movie_poster[0].url" :alt="movie.field_movie_poster[0].alt">
+                    <div v-if="movie.field_actors && movie.field_actors.length > 0">
+                        <strong>Actors:</strong><br>
+                        <span v-for="actor in movie.field_actors" :key="actor.id">{{ actor.value }}<br></span>
+                    </div>
+                    <div v-if="movie.field_genres && movie.field_genres.length > 0">
+                        <strong>Genre:</strong>
+                        <span v-for="genre in movie.field_genres" :key="genre.id">{{ genre.value }},</span>
+                    </div>
+                    <hr v-if="movie.field_movie_poster && movie.field_movie_poster[0]">
+                    <img v-if="movie.field_movie_poster && movie.field_movie_poster[0]"
+                        :src="movie.field_movie_poster[0].url" :alt="movie.field_movie_poster[0].alt">
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 

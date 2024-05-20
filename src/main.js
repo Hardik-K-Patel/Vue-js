@@ -2,9 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import axios from 'axios';
 import jQuery from 'jquery';
-import AboutUs from './components/AboutUs.vue';
 import HomePage from './components/HomePage.vue';
 import SingleMovie from './components/SingleMovie.vue';
+import CreateMovie from './components/CreateMovie.vue';
 
 import VueRouter from 'vue-router'
 
@@ -19,7 +19,7 @@ var apiURL = "https://drupal-vue.ddev.site/api/movies";
 const routes = [
   { path: '/', component: HomePage },
   { path: '/movie/:movie', name: 'movie', component: SingleMovie },
-  { path: '/about-us', component: AboutUs },
+  { path: '/create', component: CreateMovie },
 ]
 const router = new VueRouter({
   routes // short for `routes: routes`
@@ -44,22 +44,23 @@ new Vue({
     this.getMovies();
   },
   methods: {
-    getMovies: function() {
+    getMovies: function () {
 
-        axios.get(apiURL)
+      axios.get(apiURL)
         .then((response) => {
           // Update movies data
           movies_data = response.data; // Use response.data, not response.body
           this.$children[0].$props.movies = movies_data;
+          console.log(movies_data, "movies_data");
 
-          jQuery.each(movies_data, function(index, movie){
-            jQuery.each(movie.field_genres, function(index, genre){
-                if(jQuery.inArray(genre.value, genresArr) === -1) {
-                    genresArr.push(genre.value);
-                }
+          jQuery.each(movies_data, function (index, movie) {
+            jQuery.each(movie.field_genres, function (index, genre) {
+              if (jQuery.inArray(genre.value, genresArr) === -1) {
+                genresArr.push(genre.value);
+              }
             });
-        });
-        this.$children[0].$props.genres = genresArr;
+          });
+          this.$children[0].$props.genres = genresArr;
         })
         .catch((error) => {
           console.error('Error fetching movies:', error);
