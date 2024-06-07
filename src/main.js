@@ -5,6 +5,7 @@ import jQuery from 'jquery';
 import HomePage from './components/HomePage.vue';
 import SingleMovie from './components/SingleMovie.vue';
 import CreateMovie from './components/CreateMovie.vue';
+import DeleteMovie from './components/DeleteMovie.vue';
 
 import VueRouter from 'vue-router'
 
@@ -17,9 +18,10 @@ Vue.config.productionTip = false
 var apiURL = "https://drupal-vue.ddev.site/api/movies";
 
 const routes = [
-  { path: '/', component: HomePage },
+  { path: '/', name: 'home',  component: HomePage },
   { path: '/movie/:movie', name: 'movie', component: SingleMovie },
   { path: '/create', component: CreateMovie },
+  { path: '/delete/:delete', name: 'delete', component: DeleteMovie },
 ]
 const router = new VueRouter({
   routes // short for `routes: routes`

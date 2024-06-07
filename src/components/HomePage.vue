@@ -41,6 +41,11 @@
                     <hr v-if="movie.field_movie_poster && movie.field_movie_poster[0]">
                     <img v-if="movie.field_movie_poster && movie.field_movie_poster[0]"
                         :src="movie.field_movie_poster[0].url" :alt="movie.field_movie_poster[0].alt">
+
+                    <div class="col-md-3">
+                        <router-link :to="{ name: 'delete', params: { delete: movie.nid[0].value } }">Delete Movie</router-link>
+
+                    </div>
                 </div>
             </div>
         </div>
