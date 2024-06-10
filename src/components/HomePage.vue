@@ -44,7 +44,9 @@
 
                     <div class="col-md-3">
                         <router-link :to="{ name: 'delete', params: { delete: movie.nid[0].value } }">Delete Movie</router-link>
-
+                    </div>
+                    <div class="col-md-3">
+                        <router-link :to="{ name: 'edit', params: { edit: movie.nid[0].value } }">Edit Movie</router-link>
                     </div>
                 </div>
             </div>
