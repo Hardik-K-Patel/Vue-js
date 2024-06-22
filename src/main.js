@@ -1,54 +1,55 @@
-import Vue from 'vue'
-import App from './App.vue'
-import axios from 'axios';
-import jQuery from 'jquery';
-import HomePage from './components/HomePage.vue';
-import SingleMovie from './components/SingleMovie.vue';
-import CreateMovie from './components/CreateMovie.vue';
-import DeleteMovie from './components/DeleteMovie.vue';
+import Vue from "vue";
+import App from "./App.vue";
+import "./app.css";
+import axios from "axios";
+import jQuery from "jquery";
+import HomePage from "./components/HomePage.vue";
+import SingleMovie from "./components/SingleMovie.vue";
+import CreateMovie from "./components/CreateMovie.vue";
+import DeleteMovie from "./components/DeleteMovie.vue";
 
-import VueRouter from 'vue-router'
+import VueRouter from "vue-router";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
-Vue.config.productionTip = false
-
+Vue.config.productionTip = false;
 
 // Your API URL
 var apiURL = "https://drupal-vue.ddev.site/api/movies";
 
 const routes = [
-  { path: '/', name: 'home',  component: HomePage },
-  { path: '/movie/:movie', name: 'movie', component: SingleMovie },
-  { path: '/create', component: CreateMovie },
-  { path: '/delete/:delete', name: 'delete', component: DeleteMovie },
-]
+  { path: "/", name: "home", component: HomePage },
+  { path: "/movie/:movie", name: "movie", component: SingleMovie },
+  { path: "/create", component: CreateMovie },
+  { path: "/delete/:delete", name: "delete", component: DeleteMovie },
+];
 const router = new VueRouter({
-  routes // short for `routes: routes`
-})
+  routes, // short for `routes: routes`
+});
 
 var movies_data = [];
 var genresArr = [];
 new Vue({
-  el: '#app',
+  el: "#app",
   router,
-  render: h => h(App, {
-    props: {
-      movies: [], // Initialize movies array
-      genres: [],
-      movie: [],
-      liveFilter: '',
-      genreFilter: '',
-    }
-  }),
+  render: (h) =>
+    h(App, {
+      props: {
+        movies: [], // Initialize movies array
+        genres: [],
+        movie: [],
+        liveFilter: "",
+        genreFilter: "",
+      },
+    }),
   mounted() {
     console.log("Vue instance mounted");
     this.getMovies();
   },
   methods: {
     getMovies: function () {
-
-      axios.get(apiURL)
+      axios
+        .get(apiURL)
         .then((response) => {
           // Update movies data
           movies_data = response.data; // Use response.data, not response.body
@@ -65,10 +66,8 @@ new Vue({
           this.$children[0].$props.genres = genresArr;
         })
         .catch((error) => {
-          console.error('Error fetching movies:', error);
+          console.error("Error fetching movies:", error);
         });
     },
-  }
+  },
 });
-
-
