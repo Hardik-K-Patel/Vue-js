@@ -31,7 +31,7 @@
               <textarea
                 v-model="localBody"
                 name="body"
-                class="input input-bordered w-full max-w-lg"
+                class="input input-bordered w-full max-w-lg min-h-32"
                 required
               ></textarea>
             </label>

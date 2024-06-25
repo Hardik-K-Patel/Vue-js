@@ -105,7 +105,10 @@
                   >{{ movie.title[0].value }}</router-link
                 >
               </h2>
-              <p v-if="movie.body && movie.body[0] && movie.body[0].value">
+              <p
+                v-if="movie.body && movie.body[0] && movie.body[0].value"
+                class="overflow-hidden"
+              >
                 <span v-html="movie.body[0].value"></span>
               </p>
               <p
