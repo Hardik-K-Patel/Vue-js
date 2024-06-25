@@ -37,13 +37,11 @@ export default {
       this.$emit("close");
     },
     confirmDelete: function () {
-      console.log(this.id);
       const headers = {
         "Content-Type": "application/json",
         Authorization: "Basic YWRtaW46YWRtaW4=",
       };
       axios.delete(apiURL + this.id, { headers }, function (response) {
-        console.log("Deleted");
         console.log(response, "response");
       });
       this.$emit("close");

@@ -45,7 +45,6 @@ new Vue({
       },
     }),
   mounted() {
-    console.log("Vue instance mounted");
     this.getMovies();
   },
   methods: {
@@ -56,7 +55,6 @@ new Vue({
           // Update movies data
           movies_data = response.data; // Use response.data, not response.body
           this.$children[0].$props.movies = movies_data;
-          console.log(movies_data, "movies_data");
 
           jQuery.each(movies_data, function (index, movie) {
             jQuery.each(movie.field_genres, function (index, genre) {

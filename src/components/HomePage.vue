@@ -142,19 +142,18 @@
                 >
               </div>
 
-              <div class="card-actions lg:justify-end">
+              <div class="card-actions md:justify-end">
+                <router-link
+                  class="btn btn-outline"
+                  :to="{ name: 'edit', params: { edit: movie.nid[0].value } }"
+                  >Edit
+                </router-link>
                 <button
                   class="btn btn-accent"
                   @click="openDeleteModal(movie.nid[0].value)"
                 >
-                  Delete Movie
+                  Delete
                 </button>
-              </div>
-              <div class="col-md-3">
-                <router-link
-                  :to="{ name: 'edit', params: { edit: movie.nid[0].value } }"
-                  >Edit Movie</router-link
-                >
               </div>
             </div>
           </div>

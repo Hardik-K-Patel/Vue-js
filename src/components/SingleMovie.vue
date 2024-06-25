@@ -75,17 +75,14 @@ export default {
     };
   },
   created() {
-    //console.log(this.$route.params.movie);
     this.getTheMovie(this.$route.params.movie);
   },
   methods: {
     getTheMovie: function (movieID) {
-      console.log("singlemovie");
       axios
         .get(apiURL + "/" + movieID)
         .then((response) => {
           this.movie = response.data;
-          console.log(JSON.stringify(response.data));
         })
         .catch((error) => {
           console.error("Error fetching movie details:", error);
