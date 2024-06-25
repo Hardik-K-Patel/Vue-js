@@ -25,4 +25,7 @@ export default {
 
 <style scoped>
 /* Your scoped styles */
+.router-link-space {
+  margin-right: 10px;
+}
 </style>

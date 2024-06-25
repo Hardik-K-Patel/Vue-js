@@ -7,6 +7,7 @@ import HomePage from "./components/HomePage.vue";
 import SingleMovie from "./components/SingleMovie.vue";
 import CreateMovie from "./components/CreateMovie.vue";
 import DeleteMovie from "./components/DeleteMovie.vue";
+import EditMovie from "./components/EditMovie.vue";
 
 import VueRouter from "vue-router";
 
@@ -22,6 +23,7 @@ const routes = [
   { path: "/movie/:movie", name: "movie", component: SingleMovie },
   { path: "/create", component: CreateMovie },
   { path: "/delete/:delete", name: "delete", component: DeleteMovie },
+  { path: "/edit/:edit", name: "edit", component: EditMovie },
 ];
 const router = new VueRouter({
   routes, // short for `routes: routes`
