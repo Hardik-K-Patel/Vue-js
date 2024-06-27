@@ -94,6 +94,11 @@
                 :src="movie.field_movie_poster[0].url"
                 :alt="movie.field_movie_poster[0].alt"
               />
+              <img
+                v-else
+                src="@/assets/placeholder.png"
+                alt="Placeholder image"
+              />
             </figure>
             <div class="card-body w-full lg:w-3/5">
               <h2
