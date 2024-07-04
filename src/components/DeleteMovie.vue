@@ -41,10 +41,13 @@ export default {
         "Content-Type": "application/json",
         Authorization: "Basic YWRtaW46YWRtaW4=",
       };
-      axios.delete(apiURL + this.id, { headers }, function (response) {
-        console.log(response, "response");
-      });
-      this.$emit("close");
+      axios.delete(apiURL + this.id, { headers })
+        .then(response => {
+          console.log(response, "response");
+          this.$emit("close");
+          window.location.href = '/'; // Redirect to home page
+          window.location.reload(); // Reload the page
+        })
     },
   },
 };
